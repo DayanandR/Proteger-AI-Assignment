@@ -24,36 +24,41 @@ const AssetPieChart: React.FC = () => {
         boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
       }}
     >
-      <CardContent sx={{ p: 3 }}>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "space-between",
-            minHeight: 250,
+            gap: { xs: 3, md: 2 },
           }}
         >
-          {/* Left Side: The Chart */}
-          <Box sx={{ width: "50%", height: 250 }}>
+          <Box
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              height: { xs: 220, sm: 240, md: 250 },
+            }}
+          >
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={data}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={85}
+                  innerRadius={50}
+                  outerRadius={80}
                   dataKey="value"
                   stroke="none"
                   paddingAngle={2}
                 >
                   {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <Cell key={index} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip
                   contentStyle={{
-                    borderRadius: "8px",
+                    borderRadius: 8,
                     border: "none",
                     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   }}
@@ -62,13 +67,12 @@ const AssetPieChart: React.FC = () => {
             </ResponsiveContainer>
           </Box>
 
-          {/* Right Side: Labels (Legend) */}
           <Box
             sx={{
-              width: "45%",
+              width: { xs: "100%", md: "45%" },
               display: "flex",
               flexDirection: "column",
-              gap: 2,
+              gap: 1.5,
             }}
           >
             {data.map((item, idx) => (
@@ -82,19 +86,18 @@ const AssetPieChart: React.FC = () => {
               >
                 <Box
                   sx={{
-                    width: 24,
-                    height: 24,
+                    width: 18,
+                    height: 18,
                     bgcolor: item.color,
-                    borderRadius: 1, // Matches the slightly rounded squares in image
+                    borderRadius: 0.5,
+                    flexShrink: 0,
                   }}
                 />
                 <Typography
-                  variant="body1"
                   sx={{
-                    fontSize: "1rem",
+                    fontSize: { xs: 14, sm: 15 },
                     fontWeight: 500,
                     color: "#1e293b",
-                    whiteSpace: "nowrap",
                   }}
                 >
                   {item.name}

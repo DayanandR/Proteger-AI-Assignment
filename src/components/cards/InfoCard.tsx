@@ -9,14 +9,13 @@ const InfoCard: React.FC<{
     sx={{
       height: "100%",
       borderRadius: 2,
-      overflow: "hidden", // Ensures the header background doesn't bleed
+      overflow: "hidden",
       boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
     }}
   >
-    {/* Card Header with Light Blue Background */}
     <Box
       sx={{
-        bgcolor: "#e0f2fe",
+        bgcolor: "#D4EBFF",
         px: 2,
         py: 1.5,
         borderBottom: "1px solid",

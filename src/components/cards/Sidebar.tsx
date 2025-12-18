@@ -20,13 +20,13 @@ import {
   ChevronRight,
 } from "@mui/icons-material";
 import VajraLogo from "../../assets/icons/logo.png";
-import DashboardIcon from "../../assets/icons/dashboard-icon.svg?react";
-import AssetIcon from "../../assets/icons/asset_icon.svg?react";
-import IncidentsIcon from "../../assets/icons/incidents-icon.svg?react";
-import ReportstsIcon from "../../assets/icons/reports-icon.svg?react";
-import RequestsIcon from "../../assets/icons/request-icon.svg?react";
-import ServicesIcon from "../../assets/icons/services-icon.svg?react";
-import UsersIcon from "../../assets/icons/users-icon.svg?react";
+import DashboardIcon from "../../assets/sidebaricons/dashboard-icon.svg?react";
+import AssetIcon from "../../assets/sidebaricons/asset_icon.svg?react";
+import IncidentsIcon from "../../assets/sidebaricons/incidents-icon.svg?react";
+import ReportstsIcon from "../../assets/sidebaricons/reports-icon.svg?react";
+import RequestsIcon from "../../assets/sidebaricons/request-icon.svg?react";
+import ServicesIcon from "../../assets/sidebaricons/services-icon.svg?react";
+import UsersIcon from "../../assets/sidebaricons/users-icon.svg?react";
 
 interface MenuItem {
   id: string;

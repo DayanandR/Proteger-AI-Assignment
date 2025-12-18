@@ -17,15 +17,13 @@ const BarChartGraph: React.FC<{
 }> = ({ title, data }) => {
   const isIncident = title.toLowerCase().includes("incident");
 
-  // Colors precisely matched to the provided images
   const colors = isIncident
-    ? { open: "#4dabf5", closed: "#e3f2fd" } // Incident Colors
-    : { open: "#1a237e", closed: "#c5cae9" }; // Work Order Colors
+    ? { open: "#4dabf5", closed: "#e3f2fd" } 
+    : { open: "#1a237e", closed: "#c5cae9" };
 
   return (
     <Card sx={{ borderRadius: 3, boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
       <CardContent>
-        {/* Header with Title and Legend */}
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
           <Typography variant="h6" sx={{ fontSize: "1.1rem", fontWeight: 700 }}>
             {title}
@@ -60,11 +58,10 @@ const BarChartGraph: React.FC<{
           </Box>
         </Box>
 
-        {/* The Graph Container */}
         <ResponsiveContainer width="100%" height={350}>
           <BarChart
             data={data}
-            layout="vertical" // Horizontal bars
+            layout="vertical" 
             margin={{ left: 40, right: 30 }}
           >
             <CartesianGrid horizontal={false} stroke="#f1f5f9" />
@@ -92,7 +89,6 @@ const BarChartGraph: React.FC<{
               }}
             />
 
-            {/* Stacked Bars with Labels */}
             <Bar dataKey="open" stackId="a" fill={colors.open} barSize={28}>
               <LabelList
                 dataKey="open"

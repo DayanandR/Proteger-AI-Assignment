@@ -20,7 +20,6 @@ import { theme } from "../config/theme";
 import Sidebar from "../components/cards/Sidebar";
 import MiniBarChartGraph from "../components/graphs/MiniBarChartGraph";
 import InfoCard from "../components/cards/InfoCard";
-import DepartmentSection from "../components/sections/DepartmentSection";
 import {
   Menu as MenuIcon,
   Download as DownloadIcon,
@@ -38,6 +37,8 @@ import AssetPieChart from "../components/graphs/AssetPieChart";
 import VajraLogo from "../assets/icons/orange-logo.png";
 import HealthMetricsIcon from "../assets/icons/health_metrics.svg";
 import LocationIcon from "../assets/icons/distance.svg";
+import DepartmentSection from "../components/sections/DepartmentSection";
+import Logo from "../assets/icons/logo.png";
 
 interface Asset {
   name: string;
@@ -220,11 +221,13 @@ const Dashboard: React.FC = () => {
       }}
     >
       <CssBaseline />
-      <Sidebar
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        isMobile={isMobile}
-      />
+      {(!isMobile || drawerOpen) && (
+        <Sidebar
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          isMobile={isMobile}
+        />
+      )}
 
       <Box
         component="main"
@@ -237,7 +240,7 @@ const Dashboard: React.FC = () => {
           position="sticky"
           elevation={0}
           sx={{
-            bgcolor: "white",
+            bgcolor: isMobile ? "#1e293b" : "white",
             color: "#1e293b",
             borderBottom: "1px solid #E0E0E0",
             zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -250,42 +253,55 @@ const Dashboard: React.FC = () => {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              {isMobile && (
-                <IconButton onClick={() => setDrawerOpen(true)}>
-                  <MenuIcon />
-                </IconButton>
+              {!isMobile && (
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  <IconButton
+                    size="small"
+                    sx={{ color: "#3b82f6", bgcolor: "#eff6ff", mr: 1 }}
+                  >
+                    <ArrowBackIcon fontSize="small" />
+                  </IconButton>
+
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: 700, color: "#0f172a" }}
+                  >
+                    Reports
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "#3b82f6", fontWeight: 400, mx: 0.5 }}
+                  >
+                    /
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    sx={{ color: "#3b82f6", fontWeight: 600 }}
+                  >
+                    Bio Medical
+                  </Typography>
+                </Box>
               )}
-
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <IconButton
-                  size="small"
-                  sx={{ color: "#3b82f6", bgcolor: "#eff6ff", mr: 1 }}
-                >
-                  <ArrowBackIcon fontSize="small" />
-                </IconButton>
-
-                <Typography
-                  variant="h5"
-                  sx={{ fontWeight: 700, color: "#0f172a" }}
-                >
-                  Reports
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{ color: "#3b82f6", fontWeight: 400, mx: 0.5 }}
-                >
-                  /
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{ color: "#3b82f6", fontWeight: 600 }}
-                >
-                  Bio Medical
-                </Typography>
-              </Box>
             </Box>
 
-            {!isMobile && (
+            {isMobile ? (
+              <>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <img src={Logo} alt="vajra" style={{ height: 32 }} />
+                </Box>
+                <IconButton
+                  onClick={() => setDrawerOpen(true)}
+                  sx={{ ml: "auto", color: "white" }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </>
+            ) : (
               <Stack direction="row" spacing={2} alignItems="center">
                 <Box
                   sx={{
@@ -374,20 +390,24 @@ const Dashboard: React.FC = () => {
               p: 2,
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img src={VajraLogo} alt="vajra" style={{ height: 32 }} />
-            </Box>
+            {!isMobile && (
+              <>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <img src={VajraLogo} alt="vajra" style={{ height: 32 }} />
+                </Box>
 
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 700,
-                textAlign: { xs: "left", md: "center" },
-                fontSize: { xs: "1.2rem", md: "2rem" },
-              }}
-            >
-              Monthly Report
-            </Typography>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    textAlign: { xs: "left", md: "center" },
+                    fontSize: { xs: "1.2rem", md: "2rem" },
+                  }}
+                >
+                  Monthly Report
+                </Typography>
+              </>
+            )}
 
             <Box
               sx={{
@@ -395,6 +415,8 @@ const Dashboard: React.FC = () => {
                 flexDirection: { xs: "column", sm: "row" },
                 gap: 2,
                 alignItems: "center",
+                justifyContent: { xs: "space-between", sm: "center" },
+
                 width: { xs: "100%", md: "auto" },
               }}
             >
@@ -405,7 +427,7 @@ const Dashboard: React.FC = () => {
                   justifyContent: "space-between",
                   border: "1px solid #E2E8F0",
                   borderRadius: "50px",
-                  px: 2,
+                  px: 1,
                   py: 1,
                   width: { xs: "100%", sm: "180px" },
                 }}
@@ -413,7 +435,7 @@ const Dashboard: React.FC = () => {
                 <ChevronLeft sx={{ cursor: "pointer", color: "#94a3b8" }} />
 
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Typography variant="body1" fontWeight={500}>
+                  <Typography variant="body1" fontWeight={500} pr={1}>
                     June 2025
                   </Typography>
                   <CalendarTodayIcon sx={{ fontSize: 16, color: "#64748b" }} />
@@ -444,7 +466,7 @@ const Dashboard: React.FC = () => {
           </Box>
 
           <Grid container spacing={3} sx={{ mb: 4 }}>
-            <Grid size={{ xs: 12, md: 4 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 4 }}>
               <Card
                 sx={{
                   bgcolor: "#0b3a78",
@@ -474,14 +496,10 @@ const Dashboard: React.FC = () => {
                     </Box>
 
                     <Box>
-                      <Typography
-                        fontSize={30}
-                        fontWeight={600}
-                        lineHeight={1.3}
-                      >
+                      <Typography fontSize={25} lineHeight={1.3}>
                         Sri siddhartha institute
                       </Typography>
-                      <Typography fontSize={24} sx={{ opacity: 0.9 }}>
+                      <Typography fontSize={22} sx={{ opacity: 0.9 }}>
                         of medical science
                       </Typography>
                     </Box>
@@ -493,21 +511,21 @@ const Dashboard: React.FC = () => {
                       alt="location"
                       style={{ paddingLeft: 8 }}
                     />
-                    <Typography fontSize={30}>Vijayanagar</Typography>
+                    <Typography fontSize={25}>Vijayanagar</Typography>
                   </Box>
                 </CardContent>
               </Card>
             </Grid>
-            <Grid size={{ xs: 12, md: 4 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 4 }}>
               <AssetPieChart />
             </Grid>
-            <Grid size={{ xs: 12, md: 4 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 4 }}>
               <MiniBarChartGraph />
             </Grid>
           </Grid>
 
-          <Grid container spacing={3} sx={{ mb: 3 }}>
-            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+          <Grid container spacing={3} sx={{ mb: 4 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 12, lg: 4 }}>
               <Paper
                 elevation={0}
                 sx={{
@@ -647,14 +665,17 @@ const Dashboard: React.FC = () => {
               />
             </Grid>
           </Grid>
+          <DepartmentSection
+            departments={departments.slice(0, 2)}
+            color="#60a5fa"
+            isIncident={true}
+          />
 
-          {departments.slice(0, 2).map((dept, idx) => (
-            <DepartmentSection
-              key={idx}
-              department={dept}
-              color={idx < 2 ? "#60a5fa" : "#1e3a8a"}
-            />
-          ))}
+          <DepartmentSection
+            departments={departments.slice(2, 4)}
+            color="#1e3a8a"
+            isIncident={false}
+          />
         </Container>
       </Box>
     </Box>
