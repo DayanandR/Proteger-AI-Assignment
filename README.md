@@ -1,73 +1,58 @@
-# React + TypeScript + Vite
+# Protegar AI - Biomedical Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A professional, responsive medical asset management dashboard built as a technical assignment. This application provides real-time insights into hospital equipment health, incident reporting, and maintenance work orders.
 
-Currently, two official plugins are available:
+## ✨ Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Comprehensive Analytics:** Visualizes asset distribution and incident trends using `Recharts`.
+- **Responsive Layout:** Adaptive Sidebar and Grid system optimized for Mobile, Tablet, and Desktop.
+- **Departmental Breakdown:** Detailed tracking of assets (e.g., Anesthesiology, Radiology) with status indicators.
+- **Modern UI/UX:** Built with Material UI (MUI) following a clean, medical-grade aesthetic.
+- **Type Safety:** Fully implemented with TypeScript for robust data handling.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Category       | Technology          |
+| -------------- | ------------------- |
+| **Framework**  | React 19            |
+| **Build Tool** | Vite 7              |
+| **UI Library** | Material UI (MUI) 7 |
+| **Charts**     | Recharts            |
+| **Language**   | TypeScript          |
+| **Linting**    | ESLint              |
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 2. Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 4. Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## 📂 Project Structure
+
+```
+src/
+ ├── components/   # Reusable UI elements (Graphs, Cards, Sidebars)
+ ├── pages/        # Main page layouts and view logic
+ ├── assets/       # Icons, logos, and static imagery
+ ├── config/       # MUI Theme customization and global settings
 ```
